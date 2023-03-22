@@ -1,0 +1,39 @@
+#This code evaluates two values after getting a number from a user as an input.
+#First number = the given num + 2
+#Second number = the calculated first num + 10
+
+.data
+msg: .asciiz "Next number;"
+nl: .asciiz "\n"
+
+.text
+li $v0, 5 
+syscall
+
+#v0 now has user input int
+move $a0, $v0 #setup arguments for funct
+jal funct
+
+addi $a0, $v0, 10
+jal funct
+
+li $v0,10
+syscall
+
+funct:
+move $t0, $a0
+li $v0, 4
+la $a0, msg
+syscall
+
+addi $t0, $t0, 2
+li $v0, 1
+move $a0, $t0
+syscall
+
+li $v0, 4
+la $a0, nl
+syscall
+
+move $v0, $t0
+jr $ra
