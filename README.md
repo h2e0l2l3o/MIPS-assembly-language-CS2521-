@@ -35,8 +35,8 @@
 
  ### Labs
  * Lab 1: Translate the following C++ code into MIPS
-          <br/> > A=6;
-          <br/> > B=9;
+          <br/>> > A=6;
+          <br/>> > B=9;
           <br/> > C=B-A;
           <br/> > cout<< C;
           
