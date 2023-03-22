@@ -1,0 +1,37 @@
+.data
+msg1: .asciiz "Please enter a number:\n" #The prompt message for a user to enter a number
+msg2: .asciiz "\n"	#for a new line
+.text
+main:
+li $v0 4	#print the msg1(string)
+la $a0 msg1
+syscall
+
+li $v0 5	#read an integer from a user
+syscall
+move $s0 $v0	#store the input in $s0
+
+mult $s0 $s0	#multiply the integer with the same integer(the result is its square)
+mflo $s1	#store the value of its square
+
+loop:		#print every integer between that integer and its square
+
+li $v0 1	#print an integer 
+move $a0 $s0
+syscall
+
+li $v0 4	#print the msg2
+la $a0 msg2
+syscall
+
+addi $s0 $s0 1	 #add 1 to the previous integer
+
+ble $s0 $s1 loop  #While the integer is less than its square or equal to it, it goes to 'loop'
+
+li $v0 10	#end the program
+syscall
+
+
+
+
+
