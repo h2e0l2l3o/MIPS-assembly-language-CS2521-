@@ -1,4 +1,4 @@
-# MIPS-assembly-language-CS2521-
+# MIPS Assembly Language
 ## MIPS(Microprocessor without Interlocked Pipelined Stages)
   * A type of computer processor architecture, specifically a Reduced Instruction Set Computer (RISC) architecture. It was developed by MIPS Technologies and is used in a variety of applications, including embedded systems, gaming consoles, and supercomputers.
 
