@@ -1,0 +1,53 @@
+#This code converts the age of a dog to the age of human
+
+.data
+prompt: .asciiz "What is the age of a dog?(It should be an integer.) \n"
+result: .asciiz "Age in human years: "
+
+.text
+main:
+
+li $v0 4	#show the propmt message
+la $a0 prompt
+syscall
+
+li $v0 5	#read an input from the user
+syscall
+move $s0 $v0
+
+ble $s0 1 op1	#if the dog age is less than 1 or equal to 1, it goes to 'op1' 
+ble $s0 2 op2	#if the dog age is less than 2 or equal to 2, it goes to 'op2'
+
+#if the dog age doesn't belong to both options above, it goes here.
+li $t0 5	
+subi $s1 $s0 2 #dog age - 2
+mult $s1 $t0	#previous value * 5
+mflo $s2	#store the result
+addi $s2 $s2 24 #prvious value +24
+j end	#it goes to 'end' to be printed
+
+op1:
+li $t0 15
+mult $s0 $t0	#dog age * 15
+mflo $s2	#store the result
+j end	#it goes to 'end' to be printed
+
+op2:
+li $t0 9	
+subi $s1 $s0 1 #dog age - 1
+mult $s1 $t0	#previous value * 9
+mflo $s2	#store the result
+addi $s2 $s2 15 #prvious value +15
+j end	#it goes to 'end' to be printed
+
+end:
+li $v0 4	#show the result message
+la $a0 result
+syscall
+
+li $v0 1	#print the result value
+move $a0 $s2
+syscall
+
+li $v0 10	#End this program
+syscall
