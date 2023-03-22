@@ -1,0 +1,98 @@
+.data
+msg1: .asciiz "Please enter numbers, press (0) to exit: \n"
+msg2: .asciiz "\nYour numbers were: \n"
+line: .asciiz "\n"
+
+.text
+li $v0 4	#print string
+la $a0 msg1	#show msg1
+syscall
+
+li $t0 0	#counter for input
+
+loop:
+li $v0 5	#read integer
+syscall
+move $t1 $v0	#move the integer to $t1
+beq $t1 $zero print #if the entered value is 0, it goes to print
+sw $t1 0($sp)	#t1 stored an interger 
+addi $sp $sp -4	#set the stack a word down(decrease address of sp)
+addi $t0 $t0 4 #increase counter by one address
+j loop	#jump to loop
+
+print:
+li $v0 4	#print string
+la $a0 msg2	#show msg2
+syscall
+
+ #increase sp to the start address 
+#li $t2 0	#to check if all output is printed
+
+output:
+beq $t0 $zero exit #when the address of printed integers is same as that of entered integers except for 0, it goes to exit
+li $v0 1	#print integer
+addu $t2 $t0 $sp
+lw $a0 ($t2)	#store data from $sp's memory address in $a0
+syscall
+
+li $v0 4	#print string
+la $a0 line	#for a new line
+syscall
+
+addi $t0 $t0 -4	#decrease address of sp
+#addi $t2 $t2 4 #increase counter by one address as an integer is printed
+j output #jump to output
+
+exit:
+li $v0 10	#exit the program
+syscall
+
+#OR THIS CODE WORKS TOO!
+.data
+msgIn: .asciiz "Enter an integer (enter 0 to quit):\n"
+msgOut: .asciiz "Numbers you entered: \n"
+msgSpace: .asciiz "\n"
+
+.text
+main: 
+li $s0, 0 #var to check if input == $s0 == 0
+li $s1, 0 #counter for input
+li $s2, 0 #counter for output
+
+li $v0, 4
+la $a0, msgIn
+syscall 
+
+loop:
+li $v0, 5
+syscall
+
+beq $v0, $s0, print #If input == 0
+move $t0, $v0
+sw $t0, 0($sp)
+addi $sp, $sp, -4 #decrease address of sp
+addi $s1, $s1, 4 #increase counter by one address
+j loop
+
+print:
+add $sp, $sp, $s1 #increase sp to the start address 
+la $a0, msgOut
+li $v0, 4
+syscall
+
+printloop:
+li $v0, 1
+beq $s1, $s2, exit
+lw $a0, 0($sp) #pop 
+addi $sp, $sp, -4 #decrease address of sp
+syscall
+
+li $v0, 4
+la $a0, msgSpace
+syscall
+addi $s2, $s2, 4
+j printloop
+
+exit:
+li $v0, 10
+syscall
