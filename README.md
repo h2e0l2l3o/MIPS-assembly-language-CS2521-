@@ -49,14 +49,24 @@
     * Add a new label to the .txt section to jump there
     
  * Lab 3: Create a MIPS program that will take an integer input from the user, and output numbers the number the user entered, followed by every integer between that integer and its square(inclusive). For instance, if the user entered the number 3, the output might look like the following: 
-<br/> Please enter a number: 
-<br/> 3 
-<br/> 3 
-<br/> 4 
-<br/> 5 
-<br/> 6 
-<br/> 7 
-<br/> 8 
-<br/> 9 
-<br/> -- program is finished running -
+         
+         Please enter a number: 
+ 
+         3
+         
+         3
+         
+         4
+         
+         5
+         
+         6
+         
+         7
+        
+         8
+         
+         9
+ 
+         -- program is finished running -
       
