@@ -1,0 +1,65 @@
+.globl main
+.data
+msg1: .asciiz "\nPlease input a Celsius temperature: \n"
+msg2: .asciiz "This is "
+msg3: .asciiz " degrees Fahrenheit.\n" 
+msg4: .asciiz "Would you like to continue? (y/n)\n"
+msg5: .asciiz "\nExiting."
+
+.text
+main:
+li $v0 4 	#print string
+la $a0 msg1 	#show msg1
+syscall
+
+li $v0 5	#read integer
+syscall
+
+move $a0 $v0	#move the entered value to $a0
+jal conversion	#go to a function, conversion
+
+li $v0 4 	#print string
+la $a0 msg2 	#show msg2
+syscall
+
+li $v0 1 	#print integer
+move $a0 $v1	#show the result which is converted to Fahrenheit
+syscall
+
+li $v0 4 	#print string
+la $a0 msg3 	#show msg3
+syscall
+
+li $v0 4 	#print string
+la $a0 msg4 	#show msg4
+syscall
+
+li $v0 12	#read character
+syscall
+move $s3 $v0	#move the char value from a user to $s1
+
+beq $s3 'y' main	#if the entered string is y, go to loop
+
+#if not, the program ends
+li $v0 4 	#print string
+la $a0 msg5 	#show msg5
+syscall
+
+li $v0 10	#exit
+syscall
+
+conversion:	#the function to convert Celsius to Fahrenheit(F = (9/5)*C + 32)
+li $s0 9	#store 9 to a register, $s0
+li $s1 5	#store 5 to s register, $s1
+
+mult $a0 $s0	#multiply by 9
+mflo $t0	#store the multiplied value to $t0
+
+div  $t0 $s1	#divide by 5
+mflo $v1	#store the divided value to $v1
+
+addi $v1 $v1 32 #add 32
+jr $ra	#jump to the next line of jal instruction
+
+
+
