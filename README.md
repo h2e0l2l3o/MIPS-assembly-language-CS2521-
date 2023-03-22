@@ -35,10 +35,10 @@
 
  ### Labs
  * Lab 1: Translate the following C++ code into MIPS
-          <br/>> > A=6;
-          <br/>> > B=9;
-          <br/> > C=B-A;
-          <br/> > cout<< C;
+          > <br/> A=6;
+          > <br/> B=9;
+          > <br/> C=B-A;
+          > <br/> cout<< C;
           
  * Lab 2: This code is modified from the previoud code. It will print out an additional statement if the result is greater than 10. “The sum is greater than 10”
     * Declare this new string in the .data section. 
