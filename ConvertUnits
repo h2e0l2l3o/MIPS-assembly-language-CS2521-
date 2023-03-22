@@ -1,0 +1,49 @@
+#This code gets a value with a 'km' unit from the user
+#Then, it converts the unit from killometers(km) to meters(m)
+
+.data
+msg1 : .asciiz "Enter the value in kilometers(the data type should be an integer): "	
+msg2 : .asciiz "The equivalent value in meters is "
+
+.text
+main:
+li $v0 4	#print string
+la $a0 msg1	#show msg1 to a user
+syscall
+
+li $v0 5	#read an integer from the user
+syscall
+move $a0 $v0	#move the entered value from $v0 to $a
+
+jal byTen	#go to a function, byTen
+move $a0 $v0	#move the multiplied value by 10 from $v0 to $a
+jal byTen	#go to a function, byTen
+move $a0 $v0	#move the multiplied value by 10 from $v0 to $a
+jal byTen	#1km = 1000 meters, so byTen should be excuted three times
+move $a0 $v0	#move the multiplied value by 10 from $v0 to $a
+
+move $s0 $a0	#move the result to $s0
+
+li $v0 4	#print string
+la $a0 msg2	#show msg2 to a user
+syscall
+
+li $v0 1	#print integer (result)
+move $a0 $s0	
+syscall
+
+#Copy and paste this code into MARS
+#This should be the end of your program
+#You may not add additional code below these lines
+#You may not modify the code below these lines
+
+li $v0 10
+syscall
+
+byTen:
+#Multiplies the input in $a0 by 10
+#Returns the result in $v0
+	li $t0 10 
+	mult $a0 $t0	#multiply input by 10
+	mflo $v0	#return input * 10
+	jr $ra		#end of function no code past this point.
