@@ -1,0 +1,10 @@
+main:
+li $t0 1  # count = 1
+loopstart: #label to mark start of the loop
+li $v0 1
+move $a0 $t0 
+syscall  # print count
+addi $t0 $t0 1   #count ++
+ble $t0 4 loopstart  # if count<=4 loop
+li $v0 10 #exit
+syscall
