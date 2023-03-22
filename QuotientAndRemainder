@@ -1,0 +1,29 @@
+.data
+qmsg: .asciiz "quotient:"
+rmsg: .asciiz "remainder:"
+nl: .asciiz "\n"
+
+.text
+
+li $t0 5
+li $t1 6
+
+div $t0 $t1
+la $a0 qmsg
+li $v0 4
+syscall
+
+mflo $a0
+li $v0 1
+syscall
+
+la $a0 rmsg
+li $v0 4
+syscall
+
+mfhi $a0
+li $v0 1
+syscall
+
+li $v0 10
+syscall
