@@ -1,0 +1,47 @@
+#This code gets a value from a user, and divide the integer by 5
+#This code adds 2 to the value until it is divisible by 5
+# When is is divisible, it prints the number that is divisible by 5
+.data
+prompt1: .asciiz "Enter an integer: \n"
+prompt2: .asciiz "You entered "
+result: .asciiz "\nThe output is "
+
+.text
+main:
+li $v0 4	#show the propmt1 message
+la $a0 prompt1
+syscall
+
+li $v0 5	#read an input from the user
+syscall
+move $s0 $v0
+
+li $v0 4	#show the propmt2 message
+la $a0 prompt2
+syscall
+
+li $v0 1	#print the entered integer
+move $a0 $s0
+syscall
+
+point:
+li $t0 5 
+div $s0 $t0	#divide the integer by 5 
+mfhi $s1	#Store the remainder 
+beq $s1 0 end	#if the remainder is 0, it goes to 'end'
+
+addi $s0 $s0 2	# add 2 because the remainder is not 0
+j point 	#It goes to 'point' to check whether it is divisible by 5
+
+end:
+li $v0 4	#show the result message
+la $a0 result
+syscall
+
+li $v0 1	#print the result value
+move $a0 $s0
+syscall
+
+li $v0 10	#End this program
+syscall
+
