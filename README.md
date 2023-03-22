@@ -113,63 +113,63 @@
 
      An example run of the program:
      
-     Please input a Celsius temperature:
+          Please input a Celsius temperature:
      
-     100
-     
-     This is 212 degrees Fahrenheit.
-     
-     Would you like to continue? (y/n)
-     
-     y
-     
-     Please input a Celsius temperature:
-     
-     0
-     
-     This is 32 degrees Fahrenheit.
-     
-     Would you like to continue? (y/n)
-     
-     n
-     
-     Exiting.
-     
-     -- program is finished running –
+          100
+
+          This is 212 degrees Fahrenheit.
+
+          Would you like to continue? (y/n)
+
+          y
+
+          Please input a Celsius temperature:
+
+          0
+
+          This is 32 degrees Fahrenheit.
+
+          Would you like to continue? (y/n)
+
+          n
+
+          Exiting.
+
+          -- program is finished running –
 
  * Lab 5: Create a program that will continuously take in numbers from the user until the user enters 0, and will then output all of the numbers that were entered, in order. [Use a stack!!!]
 For example, the program output might look something like the following:
 
-   Please enter numbers, press (0) to exit:
-   
-   393
-   
-   21
-   
-   5
-  
-   120
-   
-   456
-   
-   3
-   
-   22
-   
-   0
-   
-   Your numbers were:
-   
-   393
-   
-   21
-   
-   5
-   
-   120
-   
-   456
-   
-   3
-   
-   22
+        Please enter numbers, press (0) to exit:
+
+        393
+
+        21
+
+        5
+
+        120
+
+        456
+
+        3
+
+        22
+
+        0
+
+        Your numbers were:
+
+        393
+
+        21
+
+        5
+
+        120
+
+        456
+
+        3
+
+        22
